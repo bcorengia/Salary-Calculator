@@ -1,0 +1,64 @@
+﻿@model EmployeesTableViewModel
+
+<div class="text-center">
+    <h1 class="display-4">Salary Calculator</h1>
+</div>
+
+<form id="search-employee">
+    <div class="form-group">
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <button type="submit" class="btn btn-primary">Get Employees</button>
+            </div>
+            <input type="search" class="form-control" id="search-input" placeholder="Enter employee Id or Name">
+        </div>
+    </div>
+</form>
+
+<div class="mt-3">
+    <div id="EmployeesTable"></div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.js"
+        integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
+        crossorigin="anonymous"></script>
+
+<script>
+$('#search-employee').submit(function (e) {
+    var filter = $('#search-input').val();
+    var page = 1;
+    var pageSize = $("#page-size-selector button.active").text();
+    loadTable(filter, page, pageSize);
+    e.preventDefault();
+});
+
+function loadTable(filter, page, pageSize) {
+    $.ajax({
+        url: '@Url.Action("OnGetPartialEmployees", "Employees")',
+        data: {
+            filter: filter,
+            page: page,
+            pageSize: pageSize
+        },
+        type: "POST",
+        success: function (data) {
+            $('#EmployeesTable').html(data);
+        }
+    });
+}
+
+function changePageSize(newSize) {
+    var filter = $('#search-input').val();
+    var page = $('.page-item.active').text();
+    var pageSize = newSize;
+    loadTable(filter, page, pageSize);
+}
+
+    function changePage(newPage) {
+        var filter = $('#search-input').val();
+        var page = newPage;
+        var pageSize = $("#page-size-selector button.active").text();
+        loadTable(filter, page, pageSize);
+    }
+
+</script>

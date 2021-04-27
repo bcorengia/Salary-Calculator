@@ -1,0 +1,38 @@
+﻿@model EmployeesTableViewModel
+
+@if (Model.TotalCount > 0)
+{
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th scope="col">Id</th>
+            <th scope="col">Name</th>
+            <th scope="col">Role</th>
+            <th scope="col">Contract Type</th>
+            <th scope="col">Salary</th>
+            <th scope="col">Annual Salary</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        @foreach (var item in Model.Employees)
+        {
+            <tr>
+                <td>@item.Id</td>
+                <td>@item.Name</td>
+                <td>@item.Role?.RoleName</td>
+                <td>@item.ContractTypeFormatted</td>
+                <td>@item.Salary</td>
+                <td>@item.AnnualSalary</td>
+            </tr>
+        }
+    </tbody>
+</table>
+<partial name="_Pagination.cshtml" />
+}
+else
+{
+<partial name="_NoResults.cshtml" />
+}
+
+

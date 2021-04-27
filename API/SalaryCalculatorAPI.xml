@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>API</name>
+    </assembly>
+    <members>
+        <member name="T:Salary_Calculator_API.Controllers.EmployeesController">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Salary_Calculator_API.Controllers.EmployeesController.#ctor(Microsoft.Extensions.Logging.ILogger{Salary_Calculator_API.Controllers.EmployeesController},BLL.Services.Interfaces.IEmployeeService)">
+            <summary>
+            
+            </summary>
+            <param name="logger"></param>
+            <param name="employeeService"></param>
+        </member>
+        <member name="M:Salary_Calculator_API.Controllers.EmployeesController.GetEmployees(System.Int32,System.Int32,System.String)">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+    </members>
+</doc>
